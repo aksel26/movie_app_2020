@@ -12,15 +12,17 @@ body {
   height: 100%;
 }
 
+@media ( max-width: 480px ){
 html,
 body,
 #potato,
 .container {
+  width : 940px;
   height: 100%;
   display: flex;
   justify-content: center;
 }
-
+}
 .loader {
   width: 100%;
   height: 100%;
