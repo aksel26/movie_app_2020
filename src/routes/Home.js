@@ -1,64 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from "react"
+
 import PropTypes from "prop-types"
-import axios from "axios";
-import Movie from "../components/movie";
-import "./Home.css";
+import axios from "axios"
+import Movie from "../components/movie"
+import "./Home.css"
 
-class Home extends React.Component {
-  state = {
-    isLoading: true,
-    movies: []
+function Home() {
+  const [movies, setMovies] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
-  };
+  useEffect(() => {
+    axios
+      .get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating")
+      .then((res) => {
+        setMovies(res.data.data.movies)
+      })
+    setIsLoading(false)
+  })
 
-
-  getMovies = async () => {
-    const { data: { data: { movies } } } = await axios.get(
-
-      "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
-
-    )
-    this.setState({ movies, isLoading: false })
-  }
-  componentDidMount() {
-    this.getMovies();
-  }
-
-
-  render() {
-    const { isLoading, movies } = this.state;
-    return (
-      <section className="container">
-        {/* {
-        this.state.isLoading ? "loading..." : "we are ready"
-        } */}
-
-
-        {isLoading ? (
-
-          <div className="loader">
-            <span className="loader__text">Loading..</span>
-          </div>
-        ) : (
-            <div className="movies">
-              {movies.map(movie => (
-                <Movie
-                  key={movie.id}
-                  id={movie.id}
-                  year={movie.year}
-                  title={movie.title}
-                  summary={movie.summary}
-                  poster={movie.medium_cover_image}
-                  genre={movie.genres}
-
-                />
-
-              ))}
-            </div>
-          )}
-      </section>
-    )
-  }
+  return (
+    <section className="container">
+      {isLoading ? (
+        <div className="loader">
+          <span className="loader__text">Loading..</span>
+        </div>
+      ) : (
+        <div className="movies">
+          {movies.map((movie) => (
+            <Movie
+              key={movie.id}
+              id={movie.id}
+              year={movie.year}
+              title={movie.title}
+              summary={movie.summary}
+              poster={movie.medium_cover_image}
+              genre={movie.genres}
+            />
+          ))}
+        </div>
+      )}
+    </section>
+  )
 }
 
-export default Home;
+export default Home

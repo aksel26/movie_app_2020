@@ -1,21 +1,78 @@
 
-.movies {
+
+nav {
+  display: block;
+  padding : 100px 100px;
+  font-size: 23px;
+  text-decoration: none;
+  font-weight: 700;
+  
+ 
+  color: #333
+}
+
+nav a:link{
+   color: red; text-decoration: none;
+}
+
+nav a:visited {
+  color: black; text-decoration: none;
+}
+
+nav a:hover {
+  cursor: pointer;
+}
+
+nav ul{
+  display: flex;
+  list-style: none;
+}
+
+nav ul li::after{
+  content:"|";
+  padding: 20px 20px;
+}
+
+nav ul li:last-child::after{
+  content: "";
+}
+
+
+
+/* CONTAINER */
+
+.container{
+  display: flex;
+  justify-content: center;
+}
+.container .movies {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    padding: 50px;
-    padding-top: 70px;
-    width: 80%;
+    align-items: center;
+    flex-wrap:wrap;
+    width: 70%;
+    padding:25px;
   }
-  
+  /* .movies a {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+  } */
+
+  .movies_data .h3{
+  }
+
+  .movies_data .movie__title:visited{
+    text-decoration: none;
+    color:black;
+}
+
+
   .movies .movie {
     width: 45%;
     background-color: white;
     margin-bottom: 70px;
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
     font-weight: 300;
     padding: 20px;
     border-radius: 5px;
@@ -26,8 +83,8 @@
   
   .movie img {
     position: relative;
-    top: -50px;
-    max-width: 100px;
+    top: -30px;
+    max-width: 150px;
     width: 100%;
     margin-right: 30px;
     box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
